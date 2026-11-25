@@ -3,35 +3,41 @@
 BASIC CORE CONCEPT Questions
 =================================================================
 1. List all the namespaces in the cluster
-
+kubectl get namespaces
 
 2. List all the pods in all namespaces
-
+kubectl get pods --all-namespaces
+kubectl get pods -A
 
 3. List all the pods in the particular namespace
-
+kubectl get pods -n <namespace-name>
+kubectl get pods -n dev
 
 4. List all the services in the particular namespace
-
+kubectl get services -n <namespace-name>
+kubectl get svc -n <namespace-name>
 
 5. List all the pods showing name and namespace with a json path expression
-
+kubectl get pods -A -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.metadata.namespace}{"\n"}{end}'
 
 6. Create an nginx pod in a default namespace and verify the pod running
-
+kubectl run nginx-pod --image=nginx --restart=Never
 
 7. Create the same nginx pod with a yaml file
+vi nginx-pod.yaml
 
 8. Output the yaml file of the pod you just created
+kubectl get pod nginx-pod -o yaml
+kubectl get pod nginx-pod -o yaml > nginx-pod-output.yaml
 
 10. Get the complete details of the pod you just created
-
+Get the complete details of the pod you just created
 
 11. Delete the pod you just created
-
+kubectl delete pod nginx-pod
 
 12. Delete the pod you just created without any delay (force delete)
-
+kubectl delete pod nginx-pod --grace-period=0 --force
 
 13. Create the nginx pod with version 1.17.4 and expose it on port 80
 
